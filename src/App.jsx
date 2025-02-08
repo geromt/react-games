@@ -37,7 +37,12 @@ function App() {
     newBoard[index] = turn
     setBoard(newBoard)
     setTurn(turn === TURNS.X ? TURNS.O : TURNS.X)
-    setWinner(checkWinner(newBoard))
+    var newWinner = checkWinner(newBoard)
+    if (newWinner) {
+      setWinner(newWinner)
+    } else if (checkEndGame(newBoard)) {
+        setWinner('Draw')
+    }
   }
 
   const checkWinner = (boardToCheck) => {
@@ -48,6 +53,16 @@ function App() {
       }
     }
     return null
+  }
+
+  const checkEndGame = (boardToCheck) => {
+    return !boardToCheck.includes(null)
+  }
+
+  const resetGame = () => {
+    setBoard(Array(9).fill(null))
+    setTurn(TURNS.X)
+    setWinner(null)
   }
 
   return (
@@ -68,6 +83,7 @@ function App() {
           <p className='text-2xl font-bold'>Winner: {winner}</p>
         )
       }
+      <button onClick={resetGame} className='mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Reset Game</button>
     </main>
   )
 }
