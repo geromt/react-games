@@ -3,6 +3,7 @@ import './App.css'
 import { TURNS } from './constants'
 import { Board } from './components/Board'
 import { useBoard } from './hooks/useBoard'
+import ReactConfetti from 'react-confetti'
 
 function App() {
   const [initTurn, setInitTurn] = useState(TURNS.X)
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <main className='flex justify-center items-center flex-col h-screen'>
+      { winner && <ReactConfetti />}
       <h1 className='text-7xl font-bold p-8 mb-8'>Tic-Tac-Toe</h1>
       <Board board={board} updateBoard={updateBoard} />
       { !winner && <p className='text-2xl font-bold text-paragraph mt-8'>Turn: <span className='text-highlight'>{turn}</span></p>}
