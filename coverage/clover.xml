@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1739926686221" clover="3.2.0">
-  <project timestamp="1739926686221" name="All files">
+<coverage generated="1739929920808" clover="3.2.0">
+  <project timestamp="1739929920808" name="All files">
     <metrics statements="74" coveredstatements="64" conditionals="15" coveredconditionals="13" methods="8" coveredmethods="7" elements="97" coveredelements="84" complexity="0" loc="74" ncloc="74" packages="3" files="6" classes="6"/>
     <package name="src">
       <metrics statements="44" coveredstatements="34" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="2"/>
@@ -64,22 +64,22 @@
         <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="4" count="28" type="stmt"/>
-        <line num="5" count="28" type="stmt"/>
-        <line num="7" count="28" type="cond" truecount="1" falsecount="0"/>
-        <line num="8" count="252" type="stmt"/>
-        <line num="9" count="252" type="stmt"/>
-        <line num="11" count="252" type="stmt"/>
-        <line num="15" count="28" type="stmt"/>
+        <line num="4" count="31" type="stmt"/>
+        <line num="5" count="31" type="stmt"/>
+        <line num="7" count="31" type="cond" truecount="1" falsecount="0"/>
+        <line num="8" count="279" type="stmt"/>
+        <line num="9" count="279" type="stmt"/>
+        <line num="11" count="279" type="stmt"/>
+        <line num="15" count="31" type="stmt"/>
       </file>
       <file name="Square.jsx" path="C:\Users\SPARTAN PC\tic-tac-toe\tic-tac-toe\src\components\Square.jsx">
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="2" count="252" type="cond" truecount="1" falsecount="0"/>
-        <line num="4" count="252" type="stmt"/>
-        <line num="5" count="252" type="stmt"/>
-        <line num="6" count="252" type="stmt"/>
-        <line num="9" count="252" type="stmt"/>
+        <line num="2" count="281" type="cond" truecount="1" falsecount="0"/>
+        <line num="4" count="281" type="stmt"/>
+        <line num="5" count="281" type="stmt"/>
+        <line num="6" count="281" type="stmt"/>
+        <line num="9" count="281" type="stmt"/>
       </file>
     </package>
     <package name="src.services">
