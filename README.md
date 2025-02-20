@@ -14,39 +14,6 @@ The objective of this project is to practice with React and provide a collection
 
 To run this project locally, follow these steps:
 
-- Clone the repository:
-   ```sh
-   git clone https://github.com/your-username/react-games.git
-   ```
-
-Here are some suggestions to improve your README file:
-
-1. **Add a Project Description**: Provide a brief description of the project, its purpose, and what it includes.
-2. **Add Installation Instructions**: Include steps on how to install and run the project locally.
-3. **Add Usage Instructions**: Provide instructions on how to use the project.
-4. **Add a Contributing Section**: Explain how others can contribute to the project.
-5. **Add License Information**: Specify the license under which the project is distributed.
-6. **Add Screenshots**: Include screenshots or GIFs to showcase the project.
-
-Here's an improved version of your README:
-
-```markdown
-# React Games
-
-Collection of simple games made with React.
-
-## Games Implemented
-
-- Tic-Tac-Toe
-
-## Project Objective
-
-The objective of this project is to practice with React and provide a collection of simple games.
-
-## Installation
-
-To run this project locally, follow these steps:
-
 1. Clone the repository:
    ```sh
    git clone https://github.com/geromt/react-games.git
