@@ -1,0 +1,35 @@
+import { useState } from 'react'
+import { checkWinner, checkEndGame } from '../services/ticTacToeService'
+import { TURNS } from '../constants'
+
+export function useSuperBoard({initTurn}) {
+  const [board, setBoard] = useState(Array(9).fill(null))
+  const [turn, setTurn] = useState(initTurn)
+  const [winner, setWinner] = useState(null)
+  const [lastIndex, setLastIndex] = useState(4)
+
+  const updateBoard = (index) => {
+    if (board[index]) return
+    if (winner) return
+
+    const newBoard = [...board]
+    newBoard[index] = turn
+    setBoard(newBoard)
+    setTurn(turn === TURNS.X ? TURNS.O : TURNS.X)
+    setLastIndex(index)
+    var newWinner = checkWinner(newBoard)
+    if (newWinner) {
+      setWinner(newWinner)
+    } else if (checkEndGame(newBoard)) {
+        setWinner('Draw')
+    }
+  }
+
+  const resetGame = (newInitTurn) => {
+    setBoard(Array(9).fill(null))
+    setTurn(newInitTurn)
+    setWinner(null) 
+  }
+
+  return [ board, turn, winner, updateBoard, resetGame, lastIndex ]
+}

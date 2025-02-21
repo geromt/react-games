@@ -1,6 +1,6 @@
 import { cleanup, render, screen, within } from "@testing-library/react"
 import { afterEach, describe, expect, it, vi } from "vitest"
-import App from "../App"
+import { TicTacToe } from "../TicTacToe"
 import userEvent from "@testing-library/user-event"
 
 vi.mock('react-confetti', () => {
@@ -10,30 +10,26 @@ vi.mock('react-confetti', () => {
   }
 })
 
-describe("App", () => {
+describe("TicTacToe", () => {
   afterEach(cleanup)
 
-  it("Should render App", () => {
-    render(<App />)
-  })
-
   it("Should render Title", () => {
-    render(<App />)
+    render(<TicTacToe />)
     screen.getByText("Tic-Tac-Toe")
   })
 
   it("Should render Reset Game Button", () => {
-    render(<App />)
+    render(<TicTacToe />)
     screen.getByRole("button", { name: "Reset Game" })
   })
 
   it("Should render Turn in the beginning", () => {
-    render(<App />)
+    render(<TicTacToe />)
     screen.getByText("Turn:")
   })
 
   it("Should render a simbol when click on a square", async () => {
-    render(<App />)
+    render(<TicTacToe />)
     const boardBoxes = screen.getAllByRole("square")
     await userEvent.click(boardBoxes[0])
 
@@ -41,7 +37,7 @@ describe("App", () => {
   })
 
   it("Should alternate between X and O", async () => {
-    render(<App />)
+    render(<TicTacToe />)
     const boardBoxes = screen.getAllByRole("square")
     await userEvent.click(boardBoxes[0])
     await userEvent.click(boardBoxes[1])
@@ -53,7 +49,7 @@ describe("App", () => {
   })
 
   it("Should render the winner when there is a winner", async () => {
-    render(<App />)
+    render(<TicTacToe />)
     const boardBoxes = screen.getAllByRole("square")
     await userEvent.click(boardBoxes[0])
     await userEvent.click(boardBoxes[3])
@@ -64,7 +60,7 @@ describe("App", () => {
   })
 
   it("Should render confetti when there is a winner", async () => {
-    render(<App />)
+    render(<TicTacToe />)
     const boardBoxes = screen.getAllByRole("square")
     await userEvent.click(boardBoxes[0])
     await userEvent.click(boardBoxes[3])
@@ -75,7 +71,7 @@ describe("App", () => {
   })
 
   it("Should reset the game when click on Reset Game", async () => {
-    render(<App />)
+    render(<TicTacToe />)
     const boardBoxes = screen.getAllByRole("square")
     await userEvent.click(boardBoxes[0])
     await userEvent.click(boardBoxes[3])
