@@ -2,6 +2,7 @@ import { render, screen, cleanup, within } from "@testing-library/react";
 import { describe, expect, it, afterEach } from "vitest";
 import { SuperTicTacToe } from "../SuperTicTacToe";
 import userEvent from "@testing-library/user-event";
+import { TURNS } from "../../constants";
 
 describe("SuperTicTacToe", () => {
   afterEach(cleanup)
@@ -36,7 +37,7 @@ describe("SuperTicTacToe", () => {
       if (i === 4) {
         // Board 5 should be enabled
         await userEvent.click(squares[0])
-        expect(squares[0].textContent).toBe("X")
+        expect(squares[0].textContent).toBe(TURNS.X)
       } else {
         // Other boards should be disabled
         await userEvent.click(squares[0])
@@ -44,5 +45,37 @@ describe("SuperTicTacToe", () => {
       }
     }
   })
+
+  it("Should activate the board of the last clicked square", async () =>
+  {
+    render(<SuperTicTacToe />)
+    const boards = screen.getAllByRole("tic-tac-toe-board")
+    const firstBoard = boards[0]
+    const centralBoard = boards[4]
+    const centralSquares = within(centralBoard).getAllByRole("square")
+    const firstSquares = within(firstBoard).getAllByRole("square")
+    await userEvent.click(centralSquares[0])
+    expect(centralSquares[0].textContent).toBeTruthy()
+    await userEvent.click(firstSquares[4])
+    expect(firstSquares[4].textContent).toBeTruthy()
+    await userEvent.click(centralSquares[4])
+    expect(centralSquares[4].textContent).toBeTruthy()
+  })
+
+  it("Should alternate between X and O", async () =>
+    {
+      render(<SuperTicTacToe />)
+      const boards = screen.getAllByRole("tic-tac-toe-board")
+      const firstBoard = boards[0]
+      const centralBoard = boards[4]
+      const centralSquares = within(centralBoard).getAllByRole("square")
+      const firstSquares = within(firstBoard).getAllByRole("square")
+      await userEvent.click(centralSquares[0])
+      expect(centralSquares[0].textContent).toBe(TURNS.X)
+      await userEvent.click(firstSquares[4])
+      expect(firstSquares[4].textContent).toBe(TURNS.O)
+      await userEvent.click(centralSquares[4])
+      expect(centralSquares[4].textContent).toBe(TURNS.X)
+    })
 });
 

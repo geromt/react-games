@@ -1,6 +1,6 @@
-export function SuperSquare ({ children, updateBoard, index, enable }) {
+export function SuperSquare ({ children, updateBoard, index, enable, turn }) {
   const handleClick = () => {
-    if (enable) updateBoard(index)
+    if (enable) updateBoard(index, turn)
   }
 
   return ( 
