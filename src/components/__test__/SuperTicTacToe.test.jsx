@@ -139,6 +139,19 @@ describe("SuperTicTacToe", () => {
     screen.getAllByRole("global-winner")
   })
 
-  it("Should go to a random board if there's a winner in the objective and the current board")
+  it("Should go to the first board available if there's a winner in the objective and the current board", async () => {
+    render(<SuperTicTacToe />)
+    const boards = screen.getAllByRole("tic-tac-toe-board")
+    const firstSquares = within(boards[0]).getAllByRole("square")
+    const centralSquares = within(boards[4]).getAllByRole("square")
+    const finalSquares = within(boards[8]).getAllByRole("square")
+    await userEvent.click(centralSquares[0])
+    await userEvent.click(firstSquares[4])
+    await userEvent.click(centralSquares[8])
+    await userEvent.click(finalSquares[4])
+    await userEvent.click(centralSquares[4])
+    await userEvent.click(firstSquares[0])
+    expect(firstSquares[0].textContent).toBeTruthy()
+  })
 });
 

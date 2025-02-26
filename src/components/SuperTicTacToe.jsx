@@ -12,17 +12,17 @@ export function SuperTicTacToe() {
   const turn = useState(TURNS.X)
   const [activeBoard, setActiveBoard] = useState(4)
   const boards = useContext(BoardContext)
-  boards[0] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(0, w))})
-  boards[1] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(1, w))})
-  boards[2] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(2, w))})
-  boards[3] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(3, w))})
-  boards[4] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(4, w))})
-  boards[5] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(5, w))})
-  boards[6] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(6, w))})
-  boards[7] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(7, w))})
-  boards[8] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(8, w))})
+  boards[0] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w, a) => updateGlobalBoard(0, a, w)), myIndex:0})
+  boards[1] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w, a) => updateGlobalBoard(1, a, w)), myIndex:1})
+  boards[2] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w, a) => updateGlobalBoard(2, a, w)), myIndex:2})
+  boards[3] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w, a) => updateGlobalBoard(3, a, w)), myIndex:3})
+  boards[4] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w, a) => updateGlobalBoard(4, a, w)), myIndex:4})
+  boards[5] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w, a) => updateGlobalBoard(5, a, w)), myIndex:5})
+  boards[6] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w, a) => updateGlobalBoard(6, a, w)), myIndex:6})
+  boards[7] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w, a) => updateGlobalBoard(7, a, w)), myIndex:7})
+  boards[8] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w, a) => updateGlobalBoard(8, a, w)), myIndex:8})
 
-  const updateGlobalBoard = (boardIndex, winner) => {
+  const updateGlobalBoard = (boardIndex, activeBoard, winner) => {
     const newGlobalBoard = [...globalBoard]
     newGlobalBoard[boardIndex] = winner
     setGlobalBoard(newGlobalBoard)
