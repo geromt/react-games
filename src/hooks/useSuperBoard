@@ -3,7 +3,7 @@ import { checkWinner, checkEndGame } from '../services/ticTacToeService'
 import { TURNS } from '../constants'
 import { BoardContext } from '../context/BoardContext'
 
-export function useSuperBoard({setActiveBoard=null}) {
+export function useSuperBoard({setActiveBoard=null, updateGlobalBoard}) {
   const [board, setBoard] = useState(Array(9).fill(null))
   const [winner, setWinner] = useState(null)
   const [lastIndex, setLastIndex] = useState(4)
@@ -21,8 +21,10 @@ export function useSuperBoard({setActiveBoard=null}) {
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
       setWinner(newWinner)
+      updateGlobalBoard(newWinner)
     } else if (checkEndGame(newBoard)) {
-        setWinner('Draw')
+      setWinner('Draw')
+      updateGlobalBoard('Draw')
     }
     if (setActiveBoard != null) {
       if (boards[index][1] === null) setActiveBoard(index)

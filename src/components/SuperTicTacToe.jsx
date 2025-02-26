@@ -1,24 +1,38 @@
 import { useContext, useState } from 'react'
-import { TURNS } from '../constants';
-import { useSuperBoard } from '../hooks/useSuperBoard';
-import { SuperBoard } from './SuperBoard';
-import { BoardContext } from '../context/BoardContext';
+import { TURNS } from '../constants'
+import { useSuperBoard } from '../hooks/useSuperBoard'
+import { SuperBoard } from './SuperBoard'
+import { BoardContext } from '../context/BoardContext'
+import { checkEndGame, checkWinner } from '../services/ticTacToeService'
+import ReactConfetti from 'react-confetti'
 
 export function SuperTicTacToe() {
-  // eslint-disable-next-line no-unused-vars
+  const [globalBoard, setGlobalBoard] = useState(Array(9).fill(null))
   const [winner, setWinner] = useState(false)
   const turn = useState(TURNS.X)
   const [activeBoard, setActiveBoard] = useState(4)
   const boards = useContext(BoardContext)
-  boards[0] = useSuperBoard({setActiveBoard})
-  boards[1] = useSuperBoard({setActiveBoard})
-  boards[2] = useSuperBoard({setActiveBoard})
-  boards[3] = useSuperBoard({setActiveBoard})
-  boards[4] = useSuperBoard({setActiveBoard})
-  boards[5] = useSuperBoard({setActiveBoard})
-  boards[6] = useSuperBoard({setActiveBoard})
-  boards[7] = useSuperBoard({setActiveBoard})
-  boards[8] = useSuperBoard({setActiveBoard})
+  boards[0] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(0, w))})
+  boards[1] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(1, w))})
+  boards[2] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(2, w))})
+  boards[3] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(3, w))})
+  boards[4] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(4, w))})
+  boards[5] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(5, w))})
+  boards[6] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(6, w))})
+  boards[7] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(7, w))})
+  boards[8] = useSuperBoard({setActiveBoard, updateGlobalBoard:((w) => updateGlobalBoard(8, w))})
+
+  const updateGlobalBoard = (boardIndex, winner) => {
+    const newGlobalBoard = [...globalBoard]
+    newGlobalBoard[boardIndex] = winner
+    setGlobalBoard(newGlobalBoard)
+    const newGlobalWinner = checkWinner(newGlobalBoard)
+    if (newGlobalWinner){
+      setWinner(newGlobalWinner)
+    } else if (checkEndGame(newGlobalBoard)){
+      setWinner('Draw')
+    }
+  } 
   
 
   return (
@@ -36,8 +50,10 @@ export function SuperTicTacToe() {
         <SuperBoard board={boards[8][0]} updateBoard={boards[8][2]} enable={activeBoard==8} turn={turn} winner={boards[8][1]} /> 
       </section>
       
-      { !winner && <p>Turn: <span>{turn}</span></p>}
-      <button>Restart Game</button>
+      { !winner && <p className='text-2xl font-bold text-paragraph mt-8'>Turn: <span className='text-highlight'>{turn}</span></p>}
+      { winner && <p role="global-winner" className='text-5xl font-bold text-main mt-8'>Winner: <span className='text-highlight'>{winner}</span></p>}
+      <button className='mt-4 bg-highlight/90 hover:bg-highlight hover:scale-105 transition text-main font-bold py-2 px-4 rounded-2xl w-xl h-12 text-2xl'>Reset Game</button>
+      { winner && <ReactConfetti /> }
     </>
   )
 }
