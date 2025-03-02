@@ -23,7 +23,7 @@ export function useSuperBoard({setActiveBoard=null, updateGlobalBoard, myIndex})
       setWinner(newWinner)
       updateGlobalBoard(newWinner, index)
     } else if (checkEndGame(newBoard)) {
-      setWinner('Draw')
+      setWinner('-')
       updateGlobalBoard('Draw', index)
     }
     if (setActiveBoard != null) {
