@@ -32,7 +32,14 @@ export function SuperTicTacToe() {
     } else if (checkEndGame(newGlobalBoard)){
       setWinner('Draw')
     }
-  } 
+  }
+
+  const handleReset = () => {
+    boards.forEach(board => board[3]())
+    setWinner(null)
+    setActiveBoard(4)
+    setGlobalBoard(Array(9).fill(null))
+  }
   
 
   return (
@@ -52,7 +59,7 @@ export function SuperTicTacToe() {
       
       { !winner && <p className='text-2xl font-bold text-paragraph mt-8'>Turn: <span className='text-highlight'>{turn}</span></p>}
       { winner && <p role="global-winner" className='text-5xl font-bold text-main mt-8'>Winner: <span className='text-highlight'>{winner}</span></p>}
-      <button className='mt-4 bg-highlight/90 hover:bg-highlight hover:scale-105 transition text-main font-bold py-2 px-4 rounded-2xl w-xl h-12 text-2xl'>Reset Game</button>
+      <button className='mt-4 bg-highlight/90 hover:bg-highlight hover:scale-105 transition text-main font-bold py-2 px-4 rounded-2xl w-xl h-12 text-2xl' onClick={handleReset}>Reset Game</button>
       { winner && <ReactConfetti /> }
     </>
   )
