@@ -44,8 +44,8 @@ export function SuperTicTacToe() {
 
   return (
     <>
-      <h1 className='text-7xl font-bold p-8 mb-8'>Super Tic-Tac-Toe</h1>
-      <section className='grid grid-cols-3 gap-4'>
+      <h1 className='text-center text-5xl md:text-7xl font-bold mb-8 lg:mb-16'>Super Tic&#8209;Tac&#8209;Toe</h1>
+      <section className='grid grid-cols-3 gap-1 md:gap-4'>
         <SuperBoard board={boards[0][0]} updateBoard={boards[0][2]} enable={activeBoard==0} turn={turn} winner={boards[0][1]} /> 
         <SuperBoard board={boards[1][0]} updateBoard={boards[1][2]} enable={activeBoard==1} turn={turn} winner={boards[1][1]} /> 
         <SuperBoard board={boards[2][0]} updateBoard={boards[2][2]} enable={activeBoard==2} turn={turn} winner={boards[2][1]} /> 
@@ -58,8 +58,8 @@ export function SuperTicTacToe() {
       </section>
       
       { !winner && <p className='text-2xl font-bold text-paragraph mt-8'>Turn: <span className='text-highlight'>{turn}</span></p>}
-      { winner && <p role="global-winner" className='text-5xl font-bold text-main mt-8'>Winner: <span className='text-highlight'>{winner}</span></p>}
-      <button className='mt-4 bg-highlight/90 hover:bg-highlight hover:scale-105 transition text-main font-bold py-2 px-4 rounded-2xl w-xl h-12 text-2xl' onClick={handleReset}>Reset Game</button>
+      { winner && <p role="global-winner" className='text-5xl font-bold text-main mt-4'>Winner: <span className='text-highlight'>{winner}</span></p>}
+      <button className='mt-4 bg-highlight/90 hover:bg-highlight hover:scale-105 transition text-main font-bold py-2 px-4 rounded-2xl w-80 md:w-xl h-12 text-2xl' onClick={handleReset}>Reset Game</button>
       { winner && <ReactConfetti /> }
     </>
   )
